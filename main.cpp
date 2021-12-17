@@ -2,17 +2,19 @@
 #include <fstream>
 #include <string>
 
+using namespace std;
+
 bool loggedIn() {
-	std::string username, password, un, pw;
+	string username, password, un, pw;
 
 	//prompt user
-	std::cout << "Enter Username: ";
-	std::cin >> username;
-	std::cout << "Enter Password: ";
-	std::cin >> password;
+	cout << "Enter Username: ";
+	cin >> username;
+	cout << "Enter Password: ";
+	cin >> password;
 
 	//read file
-	std::ifstream read("Login-Register\\" + username + ".txt");
+	ifstream read("Login-Register\\" + username + ".txt");
 	getline(read, un);
 	getline(read, pw);
 
@@ -28,24 +30,24 @@ int main() {
 	int choice;
 
 	//prompt user
-	std::cout << "1. Register \n2. Login \n3. Quit \nYour Choice: ";
-	std::cin >> choice;
+	cout << "1. Register \n2. Login \n3. Quit \nYour Choice: ";
+	cin >> choice;
 
 	//if register is chosen
 	if (choice == 1) {
-		std::string username, password;
+		string username, password;
 
 		//prompt user
-		std::cout << "Select a Username: ";
-		std::cin >> username;
-		std::cout << "Select a Password: ";
-		std::cin >> password;
+		cout << "Select a Username: ";
+		cin >> username;
+		cout << "Select a Password: ";
+		cin >> password;
 
 		//create and append to file
 		ofstream file;
 		file.open("Login-Register\\" + username + ".txt");
-		file << username << std::endl << password;
-		file.close;
+		file << username << endl << password;
+		file.close();
 
 		main();
 	}
@@ -55,25 +57,25 @@ int main() {
 		bool status = loggedIn();
 
 		if (status) {
-			std::cout << "Log In Successful" << std::endl;
+			cout << "Log In Successful" << endl;
 			system("PAUSE");
 			return 1;
 		}
 		else {
-			std::cout << "Failed to Log In" << std::endl;
+			cout << "Failed to Log In" << endl;
 			return 0;
 		}
 	}
 
 	//quit program
 	if (choice == 3) {
-		std::cout << "Exiting Program" << std::endl;
+		cout << "Exiting Program" << endl;
 		return 0;
 	}
 
 	//error handling
 	else {
-		std::cout << "Invalid Option" << std::endl;
+		cout << "Invalid Option" << endl;
 		main();
 	}
 
