@@ -14,16 +14,13 @@ bool loggedIn() {
 	cin >> password;
 
 	//read file
-	ifstream read("Login-Register\\" + username + ".txt");
+	ifstream read(username + ".txt");
 	getline(read, un);
 	getline(read, pw);
 
 	//check login attempt
-	if (un == username && pw == password) {
-		return true;
-	}
-
-	return false;
+	if (un == username && pw == password) { return true; }
+	else { return false; }
 }
 
 int main() {
@@ -45,7 +42,7 @@ int main() {
 
 		//create and append to file
 		ofstream file;
-		file.open("Login-Register\\" + username + ".txt");
+		file.open(username + ".txt");
 		file << username << endl << password;
 		file.close();
 
@@ -53,7 +50,7 @@ int main() {
 	}
 
 	//if login is chosen
-	if (choice == 2) {
+	else if (choice == 2) {
 		bool status = loggedIn();
 
 		if (status) {
@@ -68,7 +65,7 @@ int main() {
 	}
 
 	//quit program
-	if (choice == 3) {
+	else if (choice == 3) {
 		cout << "Exiting Program" << endl;
 		return 0;
 	}
@@ -79,6 +76,7 @@ int main() {
 		main();
 	}
 
+	cout << "Exiting Program" << endl;
 	system("PAUSE");
 	return 0;
 }
